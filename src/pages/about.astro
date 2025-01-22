@@ -1,0 +1,122 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const skills = [
+  {
+    category: "前端开发",
+    items: [
+      "HTML/CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Vue",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    category: "后端开发",
+    items: ["Node.js", "Python", "Java", "SQL", "RESTful API"],
+  },
+  {
+    category: "开发工具",
+    items: ["Git", "VS Code", "Docker", "Linux", "Webpack"],
+  },
+];
+
+const experiences = [
+  {
+    period: "2022 - 至今",
+    title: "高级前端开发工程师",
+    company: "某科技公司",
+    description:
+      "负责公司核心产品的前端架构设计和开发，带领团队完成多个重要项目。",
+  },
+  {
+    period: "2020 - 2022",
+    title: "前端开发工程师",
+    company: "某互联网公司",
+    description: "参与电商平台的开发和维护，实现了多个关键功能模块。",
+  },
+];
+---
+
+<MainLayout title="关于我" description="个人简介和技术栈">
+  <article>
+    <h1>关于我</h1>
+
+    <section class="mb-8">
+      <p class="text-lg mb-4">
+        你好！我是一名热爱技术的全栈开发者。我喜欢探索新技术，同时也热衷于分享技术经验。
+        这个博客是我记录学习心得和技术见解的地方。
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2>技术栈</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        {
+          skills.map(skill => (
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+              <h3 class="text-lg font-semibold mb-2">{skill.category}</h3>
+              <ul class="list-disc list-inside">
+                {skill.items.map(item => (
+                  <li class="text-gray-600 dark:text-gray-300">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2>工作经历</h2>
+      <div class="space-y-6 mt-4">
+        {
+          experiences.map(exp => (
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <h3 class="text-lg font-semibold">{exp.title}</h3>
+                  <p class="text-gray-600 dark:text-gray-300">{exp.company}</p>
+                </div>
+                <span class="text-gray-500 dark:text-gray-400">
+                  {exp.period}
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300">{exp.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2>联系方式</h2>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm mt-4">
+        <ul class="space-y-2">
+          <li class="flex items-center space-x-2">
+            <span class="text-gray-600 dark:text-gray-300">📧 Email:</span>
+            <a
+              href="mailto:your.email@example.com"
+              class="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              your.email@example.com
+            </a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <span class="text-gray-600 dark:text-gray-300">🌐 GitHub:</span>
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              class="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              github.com/yourusername
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</MainLayout>
+

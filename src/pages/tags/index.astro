@@ -1,0 +1,45 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const posts = await Astro.glob("../blog/*.md");
+
+// 收集所有标签并统计文章数量
+const tagCounts = posts.reduce(
+  (acc, post) => {
+    const tags = post.frontmatter.tags || [];
+    tags.forEach(tag => {
+      acc[tag] = (acc[tag] || 0) + 1;
+    });
+    return acc;
+  },
+  {} as Record<string, number>
+);
+
+// 将标签按文章数量排序
+const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+---
+
+<MainLayout title="文章标签" description="所有文章标签">
+  <h1>文章标签</h1>
+
+  <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {
+      sortedTags.map(([tag, count]) => (
+        <a
+          href={`/tags/${tag}`}
+          class="group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+              {tag}
+            </h2>
+            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm">
+              {count} 篇
+            </span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</MainLayout>
+

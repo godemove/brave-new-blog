@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-const posts = await Astro.glob("./*.md");
+// const posts = await Astro.glob("./*.md");
+const posts = Object.values(import.meta.glob('./*.md', { eager: true }));
 ---
 
 <MainLayout title="博客文章">

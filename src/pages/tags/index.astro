@@ -1,7 +1,9 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
-const posts = await Astro.glob("../blog/*.md");
+// const posts = await Astro.glob("../blog/*.md");
+const posts = Object.values(import.meta.glob("../blog/*.md", { eager: true }));
+
 
 // 收集所有标签并统计文章数量
 const tagCounts = posts.reduce(
@@ -27,12 +29,12 @@ const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
       sortedTags.map(([tag, count]) => (
         <a
           href={`/tags/${tag}`}
-          class="group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          class="no-underline group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
         >
-          <div class="flex justify-between items-center">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+          <div class="flex justify-between items-center ">
+            <div class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
               {tag}
-            </h2>
+            </div>
             <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm">
               {count} 篇
             </span>

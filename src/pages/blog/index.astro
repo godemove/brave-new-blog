@@ -1,29 +1,29 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 // const posts = await Astro.glob("./*.md");
 const posts = Object.values(import.meta.glob("./*.md", { eager: true }));
 ---
 
 <MainLayout title="博客文章">
-  <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+  <h1 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
     所有文章
   </h1>
   <div class="grid gap-8">
     {
       posts.map(post => (
-        <article class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-          <h2 class="text-2xl font-bold mb-2">
+        <article class="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800">
+          <h2 class="mb-2 text-2xl font-bold">
             <a
               href={post.url}
-              class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+              class="no-underline text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
             >
               {post.frontmatter.title}
             </a>
           </h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
+          <p class="mb-4 text-gray-600 dark:text-gray-300">
             {post.frontmatter.description}
           </p>
-          <div class="flex justify-between items-center">
+          <div class="flex items-center justify-between">
             <div class="text-sm text-gray-500 dark:text-gray-400">
               {new Date(post.frontmatter.date).toLocaleDateString("zh-CN")}
             </div>
@@ -31,7 +31,7 @@ const posts = Object.values(import.meta.glob("./*.md", { eager: true }));
               {post.frontmatter.tags?.map(tag => (
                 <a
                   href={`/tags/${tag}`}
-                  class="text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+                  class="no-underline rounded bg-gray-100 px-2 py-1 text-sm text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   {tag}
                 </a>

@@ -1,8 +1,9 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob("../blog/*.md");
+  // const posts = await Astro.glob("../blog/*.md");
+  const posts = Object.values(import.meta.glob("../blog/*.md", { eager: true }));
 
   // 收集所有标签
   const tags = [...new Set(posts.flatMap(post => post.frontmatter.tags || []))];

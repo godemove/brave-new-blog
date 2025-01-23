@@ -15,7 +15,7 @@ const posts = Object.values(import.meta.glob("./*.md", { eager: true }));
           <h2 class="mb-2 text-2xl font-bold">
             <a
               href={post.url}
-              class="no-underline text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
+              class="text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
             >
               {post.frontmatter.title}
             </a>

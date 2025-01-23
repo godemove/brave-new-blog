@@ -29,7 +29,7 @@ const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
       sortedTags.map(([tag, count]) => (
         <a
           href={`/tags/${tag}`}
-          class="no-underline group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          class="group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
         >
           <div class="flex justify-between items-center ">
             <div class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">

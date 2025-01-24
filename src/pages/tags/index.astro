@@ -1,9 +1,9 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 
-// const posts = await Astro.glob("../blog/*.md");
-const posts = Object.values(import.meta.glob("../blog/*.md", { eager: true }));
-
+const posts = Object.values(
+  import.meta.glob("@pages/blog/*.md", { eager: true })
+);
 
 // 收集所有标签并统计文章数量
 const tagCounts = posts.reduce(

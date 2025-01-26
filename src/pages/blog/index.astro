@@ -1,8 +1,8 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-const posts = Object.values(
-  import.meta.glob("@pages/blog/*.md", { eager: true })
-);
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
 ---
 
 <MainLayout title="博客文章">
@@ -15,24 +15,24 @@ const posts = Object.values(
         <article class="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800">
           <h2 class="mb-2 text-2xl font-bold">
             <a
-              href={post.url}
+              href={`/blog/${post.data.slug}`}
               class="text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
             >
-              {post.frontmatter.title}
+              {post.data.title}
             </a>
           </h2>
           <p class="mb-4 text-gray-600 dark:text-gray-300">
-            {post.frontmatter.description}
+            {post.data.description}
           </p>
           <div class="flex items-center justify-between">
             <div class="text-sm text-gray-500 dark:text-gray-400">
-              {new Date(post.frontmatter.date).toLocaleDateString("zh-CN")}
+              {new Date(post.data.date).toLocaleDateString("zh-CN")}
             </div>
             <div class="flex gap-2">
-              {post.frontmatter.tags?.map(tag => (
+              {post.data.tags?.map(tag => (
                 <a
                   href={`/tags/${tag}`}
-                  class="no-underline rounded bg-gray-100 px-2 py-1 text-sm text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                  class="rounded bg-gray-100 px-2 py-1 text-sm text-gray-700 no-underline hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   {tag}
                 </a>

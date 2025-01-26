@@ -1,14 +1,14 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
 
-const posts = Object.values(
-  import.meta.glob("@pages/blog/*.md", { eager: true })
-);
+const posts = await getCollection("blog");
+
 
 // 收集所有标签并统计文章数量
 const tagCounts = posts.reduce(
   (acc, post) => {
-    const tags = post.frontmatter.tags || [];
+    const tags = post.data.tags || [];
     tags.forEach(tag => {
       acc[tag] = (acc[tag] || 0) + 1;
     });

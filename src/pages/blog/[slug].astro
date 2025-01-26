@@ -1,0 +1,28 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { render } from "astro:content";
+import { getCollection } from "astro:content";
+const { slug } = Astro.params;
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+const posts = await getCollection("blog");
+
+export async function getStaticPaths() {
+  const paths = await getCollection("blog").then(posts =>
+    posts.map(post => ({ params: { slug: post.data.slug } }))
+  );
+  return paths;
+}
+
+const post = posts.find(post => post.data.slug === slug);
+if (!post) {
+  return Astro.redirect("/404");
+}
+const { Content } = await render(post);
+---
+
+<MainLayout title={post.data.title}>
+  <Content />
+</MainLayout>

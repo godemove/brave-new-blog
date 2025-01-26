@@ -1,7 +1,8 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import { SITE } from "./src/config";
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: "https://your-domain.com",
+  site: SITE.url,
 });

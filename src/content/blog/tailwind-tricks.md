@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: Tailwind CSS 实用技巧
 description: 介绍一些 Tailwind CSS 的常用技巧和组件设计方法
 date: 2024-03-17
+slug: tailwind-tricks
 tags: ["Tailwind CSS", "CSS", "前端", "设计"]
 ---
 

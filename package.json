@@ -6,7 +6,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro"
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
+    "prepare": "husky"
   },
   "dependencies": {
     "astro": "^5.1.7",
@@ -17,11 +18,15 @@
     "@astrojs/tailwind": "^5.1.4",
     "@tailwindcss/typography": "^0.5.16",
     "daisyui": "^4.12.23",
+    "husky": "^9.1.7",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "packageManager": "pnpm@9.1.0"
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": "22.13.0"
+  }
 }

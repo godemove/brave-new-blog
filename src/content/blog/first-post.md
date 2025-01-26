@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: 我的第一篇博客文章
 description: 这是一篇示例文章
 date: 2024-03-20
+slug: first-post
 tags: ["示例", "教程"]
 ---
 

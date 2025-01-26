@@ -3,6 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: TypeScript 开发技巧分享
 description: 分享一些在日常开发中常用的 TypeScript 技巧和最佳实践
 date: 2024-03-19
+slug: typescript-tips
 tags: ["TypeScript", "开发技巧", "前端"]
 ---
 

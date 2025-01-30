@@ -4,7 +4,6 @@ import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 
-
 // 收集所有标签并统计文章数量
 const tagCounts = posts.reduce(
   (acc, post) => {
@@ -29,13 +28,13 @@ const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
       sortedTags.map(([tag, count]) => (
         <a
           href={`/tags/${tag}`}
-          class="group bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          class="group rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-800"
         >
-          <div class="flex justify-between items-center ">
-            <div class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+          <div class="flex items-center justify-between">
+            <div class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
               {tag}
             </div>
-            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm">
+            <span class="rounded bg-blue-100 px-2 py-1 text-sm text-blue-800 dark:bg-blue-900 dark:text-blue-200">
               {count} 篇
             </span>
           </div>

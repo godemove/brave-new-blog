@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  a {
-    @apply no-underline !important;
-  }
+a {
+  @apply no-underline !important;
 }

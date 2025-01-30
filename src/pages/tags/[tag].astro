@@ -9,9 +9,7 @@ export async function getStaticPaths() {
 
   // 为每个标签创建页面
   return tags.map(tag => {
-    const filteredPosts = posts.filter(post =>
-      post.data.tags?.includes(tag)
-    );
+    const filteredPosts = posts.filter(post => post.data.tags?.includes(tag));
     return {
       params: { tag },
       props: { posts: filteredPosts },

@@ -3,4 +3,5 @@ export type Site = {
   description: string;
   url: string;
   author: string;
+  lightAndDarkMode: boolean;
 };

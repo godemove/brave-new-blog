@@ -1,7 +1,6 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import { render } from "astro:content";
-import { getCollection } from "astro:content";
+import { render, getCollection } from "astro:content";
 const { slug } = Astro.params;
 if (!slug) {
   return Astro.redirect("/404");

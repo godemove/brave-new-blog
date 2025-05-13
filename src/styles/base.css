@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 a {
-  @apply no-underline !important;
+  @reference no-underline !important;
 }

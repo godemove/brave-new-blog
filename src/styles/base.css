@@ -1,5 +1,0 @@
-@import "tailwindcss";
-
-a {
-  @reference no-underline !important;
-}

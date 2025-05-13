@@ -5,5 +5,5 @@ export const SITE: Site = {
   description: "A personal website",
   url: "https://blog.godemo.link",
   author: "godemo",
-  lightAndDarkMode: true,
+  lightAndDarkMode: false,
 };

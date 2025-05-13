@@ -3,5 +3,5 @@
 @plugin "@tailwindcss/typography";
 
 a {
-  @reference no-underline !important;
+  @apply no-underline;
 }

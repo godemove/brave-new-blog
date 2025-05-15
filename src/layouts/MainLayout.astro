@@ -1,13 +1,11 @@
 ---
-import "@styles/global.css";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import '@styles/global.css'
 
 interface Props {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
-const { title, description } = Astro.props;
+const { title, description } = Astro.props
 ---
 
 <!doctype html>
@@ -19,17 +17,12 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body class="flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900">
-    <Header />
-
     <main
-      class="prose prose-lg mx-auto w-full max-w-4xl grow px-4 py-8 dark:prose-invert sm:px-6 lg:px-8"
+      class="prose prose-lg dark:prose-invert mx-auto w-full max-w-4xl grow px-4 py-8 sm:px-6 lg:px-8"
     >
       <slot />
     </main>
-
-    <Footer />
   </body>
 </html>

@@ -1,16 +1,89 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
+import MainLayout from '@layouts/MainLayout.astro'
 ---
 
 <MainLayout title="我的博客 - 首页">
-  <div class="text-center">
-    <h1 class="mb-4 text-4xl font-bold text-gray-400">欢迎来到我的博客</h1>
-    <p class="mb-8 text-xl text-gray-600">分享技术、思考和生活</p>
-    <a
-      href="/blog"
-      class="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
+  <div class="flex min-h-[80vh] items-center justify-center px-4">
+    <div
+      class="postcard-container w-full max-w-2xl overflow-hidden rounded-lg border-2 border-amber-200 bg-amber-50 shadow-lg transition-colors duration-300 dark:border-gray-600 dark:bg-gray-800"
     >
-      浏览文章
-    </a>
+      <!-- 明信片顶部 - 邮戳和邮票区域 -->
+      <div
+        class="flex items-start justify-between border-b border-amber-200 p-4 transition-colors duration-300 dark:border-gray-600"
+      >
+        <div class="postmark text-gray-700 italic dark:text-gray-300">
+          <p class="text-sm">寄自：某地</p>
+          <p class="text-xs">日期：2023年某月某日</p>
+        </div>
+        <div
+          class="aspect-3/4 border-1 border-dashed place-items-center p-8 text-sm text-gray-600 dark:text-gray-300"
+        >
+          邮票
+        </div>
+      </div>
+
+      <!-- 明信片内容区域 -->
+      <div
+        class="bg-amber-50 p-6 transition-colors duration-300 dark:bg-gray-800"
+      >
+        <h1
+          class="font-handwriting mb-6 text-4xl font-bold text-gray-700 transition-colors duration-300 dark:text-gray-200"
+        >
+          欢迎来到我的博客
+        </h1>
+        <p
+          class="mb-8 text-lg text-gray-600 italic transition-colors duration-300 dark:text-gray-400"
+        >
+          分享技术、思考和生活的小小角落
+        </p>
+        <p
+          class="text-md mb-8 text-gray-600 transition-colors duration-300 dark:text-gray-400"
+        >
+          亲爱的访客，<br /><br />
+          很高兴你能来到我的网络小屋。这里记录着我的思考、经历和学习心得。 希望你能找到感兴趣的内容。<br
+          /><br />
+          祝好，<br />
+          博主
+        </p>
+        <a
+          href="/blog"
+          class="inline-block rounded-lg bg-amber-600 px-6 py-3 text-white shadow-md transition-all duration-200 hover:bg-amber-700 dark:bg-amber-800 dark:hover:bg-amber-900"
+        >
+          浏览文章
+        </a>
+      </div>
+
+      <!-- 明信片底部 - 地址区域 -->
+      <div
+        class="border-t border-amber-200 bg-amber-100 p-4 text-right transition-colors duration-300 dark:border-gray-600 dark:bg-gray-700"
+      >
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          收信人：热爱阅读的你
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400">地址：互联网某处</p>
+      </div>
+    </div>
   </div>
 </MainLayout>
+
+<style>
+  .font-handwriting {
+    font-family: "Segoe Script", "Brush Script MT", cursive;
+  }
+
+  .postcard-container {
+    transform: rotate(1deg);
+    transition: transform 0.3s ease;
+  }
+
+  .postcard-container:hover {
+    transform: rotate(-1deg);
+  }
+
+  /* 夜间模式下的明信片阴影 */
+  .dark .postcard-container {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.5),
+      0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  }
+</style>

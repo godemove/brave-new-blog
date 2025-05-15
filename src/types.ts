@@ -1,7 +1,6 @@
 export type Site = {
-  title: string;
-  description: string;
-  url: string;
-  author: string;
-  lightAndDarkMode: boolean;
-};
+  title: string
+  description: string
+  url: string
+  author: string
+}

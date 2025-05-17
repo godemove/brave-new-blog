@@ -1,23 +1,26 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content'
+import MainLayout from '@layouts/MainLayout.astro'
 
-const posts = await getCollection("blog");
+const posts = await getCollection('blog')
 
 // 收集所有标签并统计文章数量
 const tagCounts = posts.reduce(
   (acc, post) => {
-    const tags = post.data.tags || [];
-    tags.forEach(tag => {
-      acc[tag] = (acc[tag] || 0) + 1;
-    });
-    return acc;
+    const tags = post.data.tags || []
+    for (const tag of tags) {
+      acc[tag] = (acc[tag] || 0) + 1
+    }
+    // tags.forEach(tag => {
+    //   acc[tag] = (acc[tag] || 0) + 1;
+    // });
+    return acc
   },
-  {} as Record<string, number>
-);
+  {} as Record<string, number>,
+)
 
 // 将标签按文章数量排序
-const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1])
 ---
 
 <MainLayout title="文章标签" description="所有文章标签">

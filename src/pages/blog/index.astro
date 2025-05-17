@@ -1,8 +1,8 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content'
+import MainLayout from '@layouts/MainLayout.astro'
 
-const posts = await getCollection("blog");
+const posts = await getCollection('blog')
 ---
 
 <MainLayout title="博客文章">

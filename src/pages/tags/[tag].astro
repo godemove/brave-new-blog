@@ -1,24 +1,24 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content'
+import MainLayout from '@layouts/MainLayout.astro'
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection('blog')
   // 收集所有标签
-  const tags = [...new Set(posts.flatMap(post => post.data.tags || []))];
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))]
 
   // 为每个标签创建页面
-  return tags.map(tag => {
-    const filteredPosts = posts.filter(post => post.data.tags?.includes(tag));
+  return tags.map((tag) => {
+    const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag))
     return {
       params: { tag },
       props: { posts: filteredPosts },
-    };
-  });
+    }
+  })
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { tag } = Astro.params
+const { posts } = Astro.props
 ---
 
 <MainLayout

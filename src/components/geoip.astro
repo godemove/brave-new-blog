@@ -1,0 +1,16 @@
+---
+---
+<p class="text-sm text-gray-600 dark:text-gray-400" id=geoip>地址: 未知地区</p>
+
+<script>
+    const geoipElement = document.getElementById('geoip');
+    const country = await fetch('https://api.ip.sb/geoip')
+  .then((res) => res.json())
+  .then((data) => {
+    return data.country || '未知地区';
+  })
+  .catch(() => '未知地区');
+    console.log('GeoIP:', country);
+    if (!geoipElement) return;
+    geoipElement.textContent = `地址: ${country}`;
+</script>

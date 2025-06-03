@@ -1,19 +1,5 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro'
-
-const _date = new Date()
-const formattedDate = _date.toLocaleDateString('zh-CN', {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-})
-
-const geoip = fetch('https://api.ip.sb/geoip')
-  .then((res) => res.json())
-  .then((data) => {
-    return data.country || '未知地区'
-  })
-  .catch(() => '未知地区')
 ---
 
 <MainLayout title="我的博客 - 首页">
@@ -27,7 +13,7 @@ const geoip = fetch('https://api.ip.sb/geoip')
       >
         <div class="postmark text-gray-700 italic dark:text-gray-300">
           <p class="text-sm">寄自: Cloudflare Pages</p>
-          <p class="text-xs">日期: {formattedDate}</p>
+          <p class="text-xs" id="date-postcard">日期: </p>
         </div>
         <div
           class="aspect-3/4 border-1 border-dashed p-8 text-sm text-gray-600 dark:text-gray-300 flex items-center justify-center"
@@ -74,11 +60,58 @@ const geoip = fetch('https://api.ip.sb/geoip')
         <p class="text-sm text-gray-600 dark:text-gray-400">
           收信人：热爱阅读的你
         </p>
-        <p class="text-sm text-gray-600 dark:text-gray-400">地址：{geoip}</p>
+        <p class="text-sm text-gray-600 dark:text-gray-400" id="geoip">
+          地址: 未知地区
+        </p>
       </div>
     </div>
   </div>
 </MainLayout>
+
+<script>
+  const geoipElement = document.getElementById("geoip");
+  const dateElement = document.getElementById("date-postcard");
+  if (dateElement) {
+    const _date = new Date();
+    const formattedDate = _date.toLocaleDateString("zh-CN", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    dateElement.textContent = `日期: ${formattedDate}`;
+  } else {
+    console.error('错误: 未找到 ID 为 "date-postcard" 的 DOM 元素。');
+  }
+
+  if (geoipElement) {
+    (async () => {
+      let country = "未知地区"; // 默认值
+      let statusMessage = `地址: ${country}`; // 初始化状态信息
+
+      try {
+        const response = await fetch("https://api.ip.sb/geoip");
+
+        if (!response.ok) {
+          throw new Error(`HTTP 请求失败，状态码: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        country = data?.country ?? "未知地区";
+        statusMessage = `地址: ${country}`; // 更新成功获取后的状态信息
+
+        console.log("GeoIP:", country);
+      } catch (error) {
+        console.error("获取 GeoIP 数据失败:", error);
+        statusMessage = `地址: 获取失败 (${country})`; // 保留上一个有效的 country 或默认值
+      } finally {
+        geoipElement.textContent = statusMessage;
+      }
+    })();
+  } else {
+    console.error('错误: 未找到 ID 为 "geoip" 的 DOM 元素。');
+  }
+</script>
 
 <style>
   .postcard-container {

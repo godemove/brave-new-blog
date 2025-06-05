@@ -1,5 +1,6 @@
 ---
 import Geoip from '@components/react/geoip.jsx'
+import DateNow from '@components/solid/date'
 import MainLayout from '@layouts/MainLayout.astro'
 ---
 
@@ -14,7 +15,7 @@ import MainLayout from '@layouts/MainLayout.astro'
       >
         <div class="postmark text-gray-700 italic dark:text-gray-300">
           <p class="text-sm">寄自: Cloudflare Pages</p>
-          <p class="text-xs" id="date-postcard">日期: </p>
+          <DateNow />
         </div>
         <div
           class="aspect-3/4 border-1 border-dashed p-8 text-sm text-gray-600 dark:text-gray-300 flex items-center justify-center"
@@ -66,21 +67,6 @@ import MainLayout from '@layouts/MainLayout.astro'
     </div>
   </div>
 </MainLayout>
-
-<script>
-  const dateElement = document.getElementById("date-postcard");
-  if (dateElement) {
-    const _date = new Date();
-    const formattedDate = _date.toLocaleDateString("zh-CN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    dateElement.textContent = `日期: ${formattedDate}`;
-  } else {
-    console.error('错误: 未找到 ID 为 "date-postcard" 的 DOM 元素。');
-  }
-</script>
 
 <style>
   .postcard-container {

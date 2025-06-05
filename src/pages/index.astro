@@ -1,6 +1,6 @@
 ---
-import Geoip from '@components/react/geoip.jsx'
 import DateNow from '@components/solid/date'
+import GeoIP from '@components/solid/geoip'
 import MainLayout from '@layouts/MainLayout.astro'
 ---
 
@@ -62,7 +62,7 @@ import MainLayout from '@layouts/MainLayout.astro'
         <p class="text-sm text-gray-600 dark:text-gray-400">
           收信人：热爱阅读的你
         </p>
-        <Geoip client:load/>
+        <GeoIP client:load/>
       </div>
     </div>
   </div>
